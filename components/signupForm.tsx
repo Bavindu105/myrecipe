@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function SignupForm() {
@@ -8,6 +9,8 @@ export default function SignupForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+
+  const router = useRouter();
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -22,7 +25,7 @@ export default function SignupForm() {
       const res = await fetch("api/signup", {
         method: "POST",
         headers: {
-          "Conent-Type": "application/json",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           firstName,
@@ -31,8 +34,18 @@ export default function SignupForm() {
           password,
         }),
       });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        router.push("/");
+      } else {
+        setError(data.message || "Something went wrong");
+        return;
+      }
     } catch {
       console.log("error", error);
+      setError("Server error please try again later");
     }
   };
 
