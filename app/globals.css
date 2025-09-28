@@ -1,7 +1,11 @@
 @import "tailwindcss";
 
 :root {
-  --brand: #F8C794;
-  --brand-light: #FFF2D7;
-  --brand-dark: #D8AE7E;
+  --primary: #6a4638;
+  --primary2: #4a2e23;
+  --secondary: #f5e9d8;
+  --secondary2: #fff9f3;
+  --accent: #7a6b60;
+  --text-on-primary: #ffffff;
+  --text-on-secondary: #000000;
 }
